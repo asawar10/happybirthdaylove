@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Shahmir ❤️</title>
+
+<style>
+body{
+margin:0;
+padding:0;
+font-family: 'Segoe UI', sans-serif;
+overflow:hidden;
+background:black;
+color:white;
+text-align:center;
+}
+
+/* Intro */
+#intro{
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#ff4d6d,#7a1c4b);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+cursor:pointer;
+}
+
+#intro h1{
+font-size:8vw;
+animation:pulse 2s infinite;
+}
+
+#intro p{
+font-size:4vw;
+color:#fff;
+text-shadow:0 0 5px #fff, 0 0 10px #ff4d6d;
+letter-spacing:0.1em;
+font-weight:bold;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+/* Gift Box Section */
+#giftSection{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+cursor:pointer;
+}
+
+/* Aesthetic Gift Box */
+.gift{
+width:40vw;
+max-width:180px;
+height:40vw;
+max-height:180px;
+background:linear-gradient(145deg,#ff6b8a,#ff2e63);
+border-radius:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:8vw;
+position:relative;
+box-shadow:
+0 10px 15px rgba(0,0,0,0.6),
+0 0 25px #ff4d6d inset,
+0 0 15px #fff inset;
+transition:transform 0.3s, box-shadow 0.3s;
+}
+
+.gift:hover{
+transform:scale(1.1) rotate(-2deg);
+box-shadow:
+0 15px 20px rgba(0,0,0,0.8),
+0 0 35px #ff4d6d inset,
+0 0 20px #fff inset;
+}
+
+.lid{
+position:absolute;
+width:110%;
+height:20%;
+background:linear-gradient(135deg,#ff355e,#c9184a);
+top:-20%;
+left:-5%;
+border-radius:15px 15px 0 0;
+transition:1s;
+box-shadow:0 5px 15px rgba(0,0,0,0.6), 0 0 15px #fff inset;
+}
+
+.ribbon{
+position:absolute;
+width:20%;
+height:100%;
+background:white;
+left:40%;
+box-shadow:0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Final Scene */
+#final{
+display:none;
+width:100%;
+height:100vh;
+position:absolute;
+top:0;
+left:0;
+background:black;
+overflow:hidden;
+}
+
+/* Happy Birthday Text */
+#birthdayText{
+font-size:8vw;
+max-font-size:50px; /* slightly smaller */
+margin-top:5vh;
+text-transform:uppercase;
+letter-spacing:0.15em;
+text-shadow:0 0 10px #fff,0 0 20px #ff4d6d,0 0 40px #ff2e63;
+}
+
+/* Romantic message */
+#message{
+width:90%;
+margin:5vh auto 0 auto;
+font-size:4vw;
+max-font-size:22px;
+white-space:pre-wrap;
+overflow:hidden;
+text-transform:uppercase;
+letter-spacing:0.1em;
+line-height:1.8em;
+text-shadow: 0 0 5px #fff, 0 0 10px #ff4d6d;
+font-weight:bold;
+font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hearts */
+.heart{
+position:absolute;
+color:#ff4d6d;
+font-size:4vw;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+from{transform:translateY(-10vh);}
+to{transform:translateY(110vh);}
+}
+
+/* Flash effect */
+.flash{
+position:fixed;
+width:100%;
+height:100vh;
+background:white;
+top:0;
+left:0;
+opacity:0;
+pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Intro -->
+<div id="intro" onclick="start()">
+<h1>Tap to Start ❤️</h1>
+<p>CLICK ANYWHERE TO OPEN YOUR GIFT</p>
+</div>
+
+<!-- Gift -->
+<div id="giftSection" onclick="openGift()">
+<div class="gift">
+🎁
+<div class="lid" id="lid"></div>
+<div class="ribbon"></div>
+</div>
+</div>
+
+<!-- Final Scene -->
+<div id="final">
+<h1 id="birthdayText">Happy Birthday Shahmir ❤️</h1>
+<p id="message"></p>
+</div>
+
+<div class="flash" id="flash"></div>
+
+<script>
+function start(){
+document.getElementById("intro").style.display="none";
+document.getElementById("giftSection").style.display="block";
+}
+
+function openGift(){
+document.getElementById("lid").style.top="-40%";
+
+/* Flash effect */
+let flash=document.getElementById("flash");
+flash.style.opacity="1";
+setTimeout(()=>{flash.style.opacity="0";},300);
+
+/* Show final scene */
+setTimeout(()=>{
+document.getElementById("giftSection").style.display="none";
+document.getElementById("final").style.display="block";
+typeText();
+hearts();
+},500);
+}
+
+/* Romantic English Message */
+let text=`MY LOVE, YOU ARE THE MOST BEAUTIFUL PART OF MY LIFE. 
+YOUR SMILE LIGHTS UP MY WORLD. 
+EVERY MOMENT WITH YOU IS A TREASURE. 
+MAY HAPPINESS ALWAYS SURROUND YOU. 
+I LOVE YOU FOREVER AND ALWAYS ❤️`;
+
+let i=0;
+function typeText(){
+if(i<text.length){
+document.getElementById("message").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeText,50);
+}
+}
+
+/* Falling Hearts */
+function hearts(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},5000);
+},300);
+}
+</script>
+
+</body>
+</html>
